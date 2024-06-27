@@ -13,8 +13,21 @@ services:
       - "3000:3000"
     depends_on:
       - database
+    environment:
+      DB_HOST: database
+      DB_PORT: 3306
+      DB_NAME: backend
+      DB_USER: admin
+      DB_PASSWORD: Root@123
 
   database:
     image: mysql:latest
     volumes:
-      - ./data:/data
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@123
+      MYSQL_DATABASE: backend1
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Root@123
+    ports:
+      - "3306:3306"
